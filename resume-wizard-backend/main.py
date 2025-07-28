@@ -30,4 +30,4 @@ async def improve_resume(file: UploadFile = File(...)):
     contents = await file.read()
     text = extract_text(file.filename, contents)
     gemini_response = get_improved_resume(text)
-    return {"filename": file.filename, "improved resume": gemini_response}
+    return {"filename": file.filename, "improved_resume": gemini_response}
