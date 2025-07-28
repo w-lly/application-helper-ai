@@ -30,24 +30,29 @@ export default function Home() {
       <h1 className="text-2xl font-bold mb-4">AI Resume Helper</h1>
 
       <form onSubmit={handleSubmit} className="mb-4">
-        <input
-          type="file"
-          onChange={(e) => setFile(e.target.files[0])}
-          accept=".pdf,.docx"
-          className="mb-4"
-        />
+        <label
+          className="custom_button"
+        >
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            accept=".pdf,.docx"
+            className="hidden"
+          />
+          {file ? "Change" : "Select"} File
+        </label>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded"
+          className="custom_button"
           disabled={loading}
         >
           {loading ? "Processing..." : "Improve Resume"}
         </button>
       </form>
 
-      <pre className="whitespace-pre-wrap bg-gray-100 p-4 rounded">
+      <div className="whitespace-pre-wrap bg-gray-100 p-4 rounded">
         {result}
-      </pre>
+      </div>
     </main>
   );
 }
