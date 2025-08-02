@@ -1,58 +1,23 @@
-"use client";
+'use client';
+import Link from 'next/link';
 
 import { useState } from "react";
 
 export default function Home() {
-  const [file, setFile] = useState(null);
-  const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!file) return alert("Please upload a file.");
-
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const res = await fetch("http://localhost:8000/improve-resume/", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-    setResult(data.improved_resume);
-    setLoading(false);
-  }
-
   return (
-    <main className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">AI Resume Helper</h1>
-
-      <form onSubmit={handleSubmit} className="mb-4">
-        <label
-          className="custom_button"
-        >
-          <input
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            accept=".pdf,.docx"
-            className="hidden"
-          />
-          {file ? "Change" : "Select"} File
-        </label>
-        <button
-          type="submit"
-          className="custom_button"
-          disabled={loading}
-        >
-          {loading ? "Processing..." : "Improve Resume"}
-        </button>
-      </form>
-
-      <div className="whitespace-pre-wrap bg-gray-100 p-4 rounded">
-        {result}
-      </div>
+    <main className="p-8 text-center">
+      <h1 className="text-3xl font-bold mb-6">AI Resume Helper</h1>
+        <div className="flex flex-col gap-4 max-w-sm mx-auto">
+          <Link href="/improve" className="bg-blue-600 text-white p-3 rounded text-center">
+            General Resume Improvements
+          </Link>
+          <Link href="/tailor" className="bg-green-600 text-white p-3 rounded text-center">
+            Tailor Resume to Job
+          </Link>
+          <Link href="/cover-letter" className="bg-purple-600 text-white p-3 rounded text-center">
+            Generate Cover Letter
+          </Link>
+        </div>
     </main>
   );
 }

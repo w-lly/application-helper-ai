@@ -9,19 +9,22 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def improve_resume_prompt(text):return f"""You are a helpful assistant who improves resumes without adding or inventing information.
     Improve the wording and formatting of the resume below while keeping in mind space constraints.
+    Do not use unnecessary line breaks and do not use horizontal lines.
+    Note that there need to be multiple spaces before a linebreak for it to register properly. Ex: '  \n' instead of just '\n'.
     Also provide a separate bullet-point list of advice about wording or structure.
 
     Resume:
     {text}
 
-    Format the output as:
+    Format the output in markdown as:
 
-    ---Improved Resume---
-    [Improved text here]
+    ## ---Improved Resume---
+    [Improved resume here]
 
-    ---Advice---
-    - bullet 1
-    - bullet 2
+    [horizontal line]
+    ## ---Advice---
+    * bullet 1
+    * bullet 2
     """
 
     # return (
