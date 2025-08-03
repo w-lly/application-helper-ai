@@ -43,8 +43,17 @@ cd application-helper-ai
 * **Create a virtual environment**:
     ```bash
     python -m venv env
-    env\Scripts\activate  # On Linux/macOS: source env/bin/activate
     ```
+
+* **Activate the virtual environment**:
+    - **On Windows**:
+        ```bash
+        .\env\Scripts\activate
+        ```
+    - **On Linux/macOS**:
+        ```bash
+        source env/bin/activate
+        ```
 
 * **Install dependencies**:
     ```bash
@@ -56,7 +65,7 @@ cd application-helper-ai
     ```ini
     GEMINI_API_KEY=your-gemini-api-key-here
     ```
-  * Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models) to use
+  - Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models) to use
     ```ini
     MODEL=your-gemini-model-here
     ```
