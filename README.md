@@ -56,7 +56,7 @@ cd application-helper-ai
     ```ini
     GEMINI_API_KEY=your-gemini-api-key-here
     ```
-* Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models} to use
+* Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models) to use
     ```ini
     MODEL=your-gemini-model-here
     ```
@@ -111,12 +111,14 @@ cd application-helper-ai
 
 ## **How It Works**
 
-1. **User Uploads Resume**: The user uploads a resume in either PDF or DOCX format.
-2. **AI Processing**: The backend sends the resume to the Gemini API for improvement, tailoring, or cover letter generation.
+1. **User Uploads Resume/Job Description**: The user uploads files in either PDF or DOCX format.
+2. **AI Processing**: The backend sends the files to the Gemini API for improvement, tailoring, or cover letter generation.
 3. **Results**: The frontend displays the AI-generated output, such as an improved resume, tailored resume, or cover letter.
 
+<!--
 ## **Example Use Cases**
 
 - **Improving Resume**: Upload your resume to fix grammatical issues, improve wording, and enhance formatting.
 - **Tailoring Resume to Job**: Upload both your resume and the job description to highlight the most relevant skills and experiences.
 - **Generating Cover Letter**: Upload your resume and job description to generate a personalized cover letter that matches the job.
+-->
