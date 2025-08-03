@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from resume_parser import extract_text
 
-from gemini_client import get_improved_resume
+from gemini_client import get_improved_resume, get_tailored_resume, get_cover_letter
 
 app = FastAPI()
 
@@ -31,3 +31,21 @@ async def improve_resume(file: UploadFile = File(...)):
     text = extract_text(file.filename, contents)
     gemini_response = get_improved_resume(text)
     return {"filename": file.filename, "improved_resume": gemini_response}
+    
+@app.post("/tailor-resume/")
+async def tailor_resume(file_resume: UploadFile = File(...), file_job: UploadFile = File(...)):
+    contents_resume = await file_resume.read()
+    contents_job= await file_job.read()
+    text_resume = extract_text(file_resume.filename, contents_resume)
+    text_job = extract_text(file_job.filename, contents_job)
+    gemini_response = get_tailored_resume(text_resume, text_job)
+    return {"filename": file_resume.filename, "tailored_resume": gemini_response}
+    
+@app.post("/cover-letter/")
+async def generate_cover_letter(file_resume: UploadFile = File(...), file_job: UploadFile = File(...)):
+    contents_resume = await file_resume.read()
+    contents_job= await file_job.read()
+    text_resume = extract_text(file_resume.filename, contents_resume)
+    text_job = extract_text(file_job.filename, contents_job)
+    gemini_response = get_cover_letter(text_resume, text_job)
+    return {"filename": file_resume.filename, "cover_letter": gemini_response}
