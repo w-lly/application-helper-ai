@@ -66,7 +66,7 @@ cd application-helper-ai
     ```ini
     GEMINI_API_KEY=your-gemini-api-key-here
     ```
-  - Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models) to use
+  - Optional: Choose a [Gemini Model](https://ai.google.dev/gemini-api/docs/models) to use
     ```ini
     MODEL=your-gemini-model-here
     ```
