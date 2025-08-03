@@ -2,8 +2,6 @@
 
 An AI-powered tool that helps you improve and tailor your resume to specific job descriptions, and even generate personalized cover letters. The application uses **Gemini API** for resume improvements and provides helpful advice based on the resume content.
 
----
-
 ## **Project Overview**
 
 This project consists of two main components:
@@ -11,15 +9,11 @@ This project consists of two main components:
 1. **Backend (FastAPI)**: Handles file uploads, extracts text from resumes (PDF, DOCX), and integrates with Gemini API for text improvement and tailoring.
 2. **Frontend (Next.js)**: A user-friendly interface that allows users to upload their resumes, enter job descriptions, and receive AI-driven improvements.
 
----
-
 ## **Features**
 
 - **Resume Improvement**: Upload your resume (PDF or DOCX) and get it improved by the AI, focusing on grammar, clarity, and formatting.
 - **Resume Tailoring**: Upload your resume along with a job description to tailor your resume for the specific role, highlighting relevant experiences and skills.
 - **Cover Letter Generation**: Upload your resume and job description to generate a personalized cover letter, ensuring it's aligned with the job you're applying for.
-
----
 
 ## **Tech Stack**
 
@@ -34,8 +28,6 @@ This project consists of two main components:
   - **Gemini API**: Used to process and improve resumes, generate tailored resumes, and create cover letters
   - **`PyMuPDF`**: For PDF file parsing
   - **`python-docx`**: For DOCX file parsing
-
----
 
 ## **Setup Instructions**
 
@@ -64,6 +56,10 @@ cd application-helper-ai
     ```ini
     GEMINI_API_KEY=your-gemini-api-key-here
     ```
+* Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models} to use
+    ```ini
+    MODEL=your-gemini-model-here
+    ```
 
 * **Run the backend**:
     ```bash
@@ -71,9 +67,7 @@ cd application-helper-ai
     ```
     The backend should now be running at `http://localhost:8000`.
 
----
-
-## **3. Frontend Setup**
+### **3. Frontend Setup**
 
 * **Install frontend dependencies**:
     Navigate to the `frontend` directory:
@@ -87,8 +81,6 @@ cd application-helper-ai
     npm run dev
     ```
     The frontend should now be running at `http://localhost:3000`.
-
----
 
 ## **Endpoints**
 
@@ -104,28 +96,24 @@ cd application-helper-ai
 2. **POST `/tailor-resume/`**
     * **Description**: Upload a resume and a job description to tailor the resume.
     * **Request**:
-        - `file`: Resume file (PDF or DOCX).
-        - `job_desc`: Job description text.
+        - `file_resume`: Resume file (PDF or DOCX).
+        - `file_job`: Job description text.
     * **Response**:
         - `tailored_resume`: Tailored resume text.
 
-3. **POST `/generate-cover-letter/`**
+3. **POST `/cover-letter/`**
     * **Description**: Upload a resume and a job description to generate a personalized cover letter.
     * **Request**:
-        - `file`: Resume file (PDF or DOCX).
-        - `job_desc`: Job description text.
+        - `file_resume`: Resume file (PDF or DOCX).
+        - `file_job`: Job description text.
     * **Response**:
         - `cover_letter`: Generated cover letter text.
-
----
 
 ## **How It Works**
 
 1. **User Uploads Resume**: The user uploads a resume in either PDF or DOCX format.
 2. **AI Processing**: The backend sends the resume to the Gemini API for improvement, tailoring, or cover letter generation.
 3. **Results**: The frontend displays the AI-generated output, such as an improved resume, tailored resume, or cover letter.
-
----
 
 ## **Example Use Cases**
 
