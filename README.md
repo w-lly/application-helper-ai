@@ -60,8 +60,9 @@ cd application-helper-ai
     pip install -r requirements.txt
     ```
 
-* **Set up your .env file** with your Gemini API key:  
-    Create a `.env` file in the `backend` folder and add:
+* **Set up your .env file** with your Gemini API key:
+
+  Create a `.env` file in the `backend` folder and add:
     ```ini
     GEMINI_API_KEY=your-gemini-api-key-here
     ```
