@@ -63,6 +63,7 @@ cd application-helper-ai
 
 * **Run the backend**:
     ```bash
+    cd backend
     uvicorn main:app --reload
     ```
     The backend should now be running at `http://localhost:8000`.
