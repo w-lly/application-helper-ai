@@ -47,7 +47,7 @@ export default function TailorPage() {
                         accept=".pdf,.docx"
                         className="hidden"
                     />
-                    {resume ? "Change" : "Select"} File
+                    {resume ? "Change" : "Select"} Resume
                 </label>
                 <label
                 className="custom_button"
