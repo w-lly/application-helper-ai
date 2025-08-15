@@ -43,8 +43,17 @@ cd application-helper-ai
 * **Create a virtual environment**:
     ```bash
     python -m venv env
-    env\Scripts\activate  # On Linux/macOS: source env/bin/activate
     ```
+
+* **Activate the virtual environment**:
+    - **On Windows**:
+        ```bash
+        .\env\Scripts\activate
+        ```
+    - **On Linux/macOS**:
+        ```bash
+        source env/bin/activate
+        ```
 
 * **Install dependencies**:
     ```bash
@@ -52,17 +61,19 @@ cd application-helper-ai
     ```
 
 * **Set up your .env file** with your Gemini API key:
-    Create a `.env` file in the `backend` folder and add:
+
+  Create a `.env` file in the `backend` folder and add:
     ```ini
     GEMINI_API_KEY=your-gemini-api-key-here
     ```
-* Optional: choose [gemini model](https://ai.google.dev/gemini-api/docs/models) to use
+  - Optional: Choose a [Gemini Model](https://ai.google.dev/gemini-api/docs/models) to use
     ```ini
     MODEL=your-gemini-model-here
     ```
 
 * **Run the backend**:
     ```bash
+    cd backend
     uvicorn main:app --reload
     ```
     The backend should now be running at `http://localhost:8000`.
