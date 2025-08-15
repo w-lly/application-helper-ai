@@ -1,6 +1,7 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from resume_parser import extract_text
+from typing import Optional
 
 from gemini_client import get_improved_resume, get_tailored_resume, get_cover_letter
 
@@ -26,26 +27,52 @@ async def upload_resume(file: UploadFile = File(...)):
     return {"filename": file.filename, "extracted text": text}
 
 @app.post("/improve-resume/")
-async def improve_resume(file: UploadFile = File(...)):
-    contents = await file.read()
-    text = extract_text(file.filename, contents)
+async def improve_resume(
+    file: Optional[UploadFile] = File(None),
+    manualInput: Optional[str] = Form(None),
+):
+    if file:
+        contents = await file.read()
+        text = extract_text(file.filename, contents)
+    elif manualInput:
+        text = manualInput
+    else:
+        return {"error": "No file or manual input provided."}
     gemini_response = get_improved_resume(text)
-    return {"filename": file.filename, "improved_resume": gemini_response}
+    return {"filename": file.filename if file else "", "improved_resume": gemini_response}
     
 @app.post("/tailor-resume/")
-async def tailor_resume(file_resume: UploadFile = File(...), file_job: UploadFile = File(...)):
+async def tailor_resume(
+    file_resume: UploadFile = File(...), 
+    file_job: Optional[UploadFile] = File(None),
+    manualInput: Optional[str] = Form(None)
+    ):
     contents_resume = await file_resume.read()
-    contents_job= await file_job.read()
     text_resume = extract_text(file_resume.filename, contents_resume)
-    text_job = extract_text(file_job.filename, contents_job)
+    if file_job:
+        contents_job = await file_job.read()
+        text_job = extract_text(file_job.filename, contents_job )
+    elif manualInput:
+        text_job = manualInput
+    else:
+        return {"error": "No file or manual input provided for job description."}
     gemini_response = get_tailored_resume(text_resume, text_job)
     return {"filename": file_resume.filename, "tailored_resume": gemini_response}
     
 @app.post("/cover-letter/")
-async def generate_cover_letter(file_resume: UploadFile = File(...), file_job: UploadFile = File(...)):
+async def generate_cover_letter(
+    file_resume: UploadFile = File(...), 
+    file_job: Optional[UploadFile] = File(None),
+    manualInput: Optional[str] = Form(None)
+    ):
     contents_resume = await file_resume.read()
-    contents_job= await file_job.read()
     text_resume = extract_text(file_resume.filename, contents_resume)
-    text_job = extract_text(file_job.filename, contents_job)
+    if file_job:
+        contents_job = await file_job.read()
+        text_job = extract_text(file_job.filename, contents_job )
+    elif manualInput:
+        text_job = manualInput
+    else:
+        return {"error": "No file or manual input provided for job description."}
     gemini_response = get_cover_letter(text_resume, text_job)
     return {"filename": file_resume.filename, "cover_letter": gemini_response}
