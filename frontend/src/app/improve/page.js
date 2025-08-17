@@ -67,9 +67,9 @@ export default function ImprovePage() {
 
       </div>
       {/* {result && !loading && ( */}
-        <div className={`max-h-[90vh] h-full max-w-[50vw] overflow-y-auto prose prose-sm bg-gray-50 p-4 rounded transition-all duration-2000 ease-in-out ${result && !loading ? "w-full opacity-100" : "w-0 opacity-0"}`}>
-            <ReactMarkdown>{result}</ReactMarkdown>
-        </div>
+      <div className={`max-h-[90vh] h-full max-w-[50vw] overflow-y-auto prose prose-sm bg-gray-50 p-4 rounded transition-all duration-2000 ease-in-out ${result && !loading ? "w-full opacity-100" : "w-0 opacity-0"}`}>
+        <ReactMarkdown>{result}</ReactMarkdown>
+      </div>
       {/* )} */}
     </div>
   );

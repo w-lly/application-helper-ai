@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function FileUpload({ onChange}) {
+export default function FileUpload({ onChange }) {
     return (
         <label className="mt-2">
             <input
